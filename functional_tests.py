@@ -26,15 +26,17 @@ class NewVisitorTest(unittest.TestCase):
 
         inputbox.send_keys(Keys.ENTER)
 
-        # import time
-        # time.sleep(10)
+        import time
+        time.sleep(10)
         table = self.browser.find_element_by_id('id_list_table')
         rows = table.find_elements_by_tag_name('tr')
-        self.assertTrue(
-            any(row.text == '1: 공작깃털 사기' for row in rows),
-            '신구 작업이 테이블에 표시되지 않는다'
-        )
 
+
+        # self.assertTrue(
+        #     any(row.text == '1: 공작깃털 사기' for row in rows),
+        #     '신구 작업이 테이블에 표시되지 않는다 -- 해당 텍스트:\n%s' %(table.text),
+        # )
+        self.assertIn('1: 공작깃털 사기', [row.text for row in rows])
         self.fail('Finish the test!')
 
 if __name__ == '__main__':
